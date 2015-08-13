@@ -2,6 +2,10 @@
 /workspace
 *.class
 *.jar
+*.project
+*.classpath
+*.settings
+
 
 #Eclipse, NetBeans and ItelliJ files
 /.*

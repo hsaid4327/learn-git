@@ -3,9 +3,9 @@ package com.mine.core.javaapi;
 public class ThreadDemoWithInlineRunnable {
 
 	public static void main(String[] args) {
-		NameRepeater nameRepeater1 = new NameRepeater(5, "first");
+		NameRepeater nameRepeater_1 = new NameRepeater(5, "first");
 		NameRepeater nameRepeater2 = new NameRepeater(5, "second");
-		nameRepeater1.start();
+		nameRepeater_1.start();
 		nameRepeater2.start();
 		nameRepeater2.start();
 
