@@ -19,6 +19,7 @@
 		<module>./java-concurrency</module>
 		<module>./java-generics</module>
 		<module>./java-algorithms</module>
+		<module>./java-collections</module>
 		
 	</modules>
 	
