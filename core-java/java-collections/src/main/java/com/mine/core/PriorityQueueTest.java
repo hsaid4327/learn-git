@@ -23,7 +23,7 @@ public class PriorityQueueTest {
 		while (queue.size() > 0) {
 			System.out.printf(" %.1f ", queue.poll());
 		}
-		Queue<Double> queueWithComparator = new PriorityQueue<Double>(new DoubleComporator());
+		Queue<Double> queueWithComparator = new PriorityQueue<Double>(3,new DoubleComporator());
 		queueWithComparator.offer(3.3);
 		queueWithComparator.offer(9.8);
 		queueWithComparator.offer(9.0);	
