@@ -19,7 +19,7 @@ import java.util.concurrent.Future;
 /**
  * This class presents an example of using concurrency Futures object. Based on
  * the user input of starting directory and the word to count, it returns a map
- * containing the file name and the number of times the word occours in that
+ * containing the file name and the number of times the word occurs in that
  * file. Each directory is handled in a seperate thread returning a Futures
  * object.
  * 
@@ -90,40 +90,25 @@ public class FuturesExample {
 
 		@Override
 		public Map<String, Integer> call() throws Exception {
-			Map<String, Integer> wordMap = processFile();
+			Map<String, Integer> wordMap = new HashMap<String, Integer>();
+			
+			 processFile(file, wordMap);
 			return wordMap;
 		}
 
-		public Map<String, Integer> processFile() {
+		public Map<String, Integer> processFile(File file, Map<String, Integer> wordMap) {
 			
-			
-			Map<String, Integer> wordMap = new HashMap<String, Integer>();
 			
 			if(file.exists() && file.isDirectory()){
-			   
-				
-				processDirectory(file, wordMap);
+				File[] fileList = file.listFiles();
+				for (File f : fileList) {
+					processFile(f, wordMap);
+				}
 			}
 			else{
 				processSingleFile(file, wordMap);
 			}
 			return wordMap;
-		}
-
-		public void processDirectory(File dir, Map<String, Integer> wordMap) {
-			
-			System.out.printf("Proccesing the directory: %s%n", dir.getName());
-			File[] fileList = dir.listFiles();
-			for (File f : fileList) {
-				if (f.isDirectory()) {
-					processDirectory(f, wordMap);
-				}
-
-				else {
-					processSingleFile(f, wordMap);
-
-				}
-			}
 		}
 		
 		
