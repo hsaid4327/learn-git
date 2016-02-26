@@ -1,0 +1,56 @@
+-------------------- Lambda Notes -----------------
+https://www.youtube.com/watch?v=q5i_O4Uj_O8
+
+
+- Lambda is a library to introduce functinal programing in Java SE8. Lambda expressions are just a way of passing
+  a block of code to the function. That is all there is to it.
+
+-------------------------------- New Interface Features in SE8------------------------------
+Interface can now contain default implementations inherited by implementing classes
+No need for helper classes like Collections that work with classes that implement 
+Collection interface and provides static methods common to them. They can now be implemented in the 
+interface
+
+--------------------------------- Functional Interface ----------------------
+Any interface with just one abstract method is the functional interface: Runnable, Comparator etc.
+
+--- Look for the syntax of Lambda expression in App class.
+
+--------------------------------------- Streams -----------------------------------------
+
+Streams provide a view of data that lets you specify computations at a higher conceptual level 
+than with collections. 
+
+• You can create streams from collections, arrays, generators, or iterators.
+
+• Use filter to select elements and map to transform elements.
+
+• Other operations for transforming streams include limit, distinct, and sorted.
+
+
+ -- Doing with iteration:
+		    int count = 0;
+		    for (String w : words) {
+		    if (w.length() > 12) count++;
+		    }
+		    
+---- Doing without iteration with stream:
+    long count = words.stream().filter(w -> w.length() > 12).count();
+    
+    long count = words.parallelStream()
+    .filter(w -> w.length() > 12)
+    .count();
+    
+    
+ ----------------------------------- Constructing Streams------------------------------
+ From Arrays:
+   Stream<String> song = Stream.of("gently", "down", "the", "stream");
+   Stream<String> echos = Stream.generate(() -> "Echo");
+   
+   Or Stream of Random Numbers:
+   Stream<Double> randoms = Stream.generate(Math::random);
+   
+   Stream<BigInteger> integers
+    = Stream.iterate(BigInteger.ZERO, n -> n.add(BigInteger.ONE));
+    
+

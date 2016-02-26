@@ -1,5 +1,7 @@
 /target/*
 /workspace
+/spring/*
+spring/*
 *.class
 *.jar
 *.project

@@ -20,7 +20,8 @@
 		<module>./java-generics</module>
 		<module>./java-algorithms</module>
 		<module>./java-collections</module>
-		
+
+		<module>java-lambda</module>
 	</modules>
 	
 	<dependencyManagement>

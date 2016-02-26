@@ -1,1 +1,16 @@
-/bin/
+/target/*
+../spring/*
+/workspace
+*.class
+*.jar
+*.project
+*.classpath
+*.settings
+
+
+#Eclipse, NetBeans and ItelliJ files
+/.*
+!.gitignore
+/*.ipr
+/*.iws
+/*.iml

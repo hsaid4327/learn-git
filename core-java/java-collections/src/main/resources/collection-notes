@@ -1,0 +1,91 @@
+----------------------------  Collection Notes -------------------------
+
+----------------------------------- Main Interfaces And Classes -----------------
+
+
+- Collection contains the core functionality required of any collection other than a map. It has no direct concrete implementations; the concrete collection classes all implement one of its subinterfaces as well.
+
+- Set is a collection, without duplicates, in which order is not significant. SortedSet automatically sorts its elements and returns them in order. NavigableSet extends this, adding methods to find the closest matches to a target element.
+
+- Queue is a collection designed to accept elements at its tail for processing, yielding them up at its head in the order in which they are to be processed. Its subinterface Deque extends this by allowing elements to be added or removed at both head and tail. Queue and Deque have subinterfaces, BlockingQueue and BlockingDeque respectively, that support concurrent access and allow threads to be blocked, indefinitely or for a maximum time, until the requested operation can be carried out.
+
+- List is a collection in which order is significant, accommodating duplicate elements.
+
+- Map is a collection which uses key-value associations to store and retrieve elements. It is extended by ConcurrentMap, which provides support for concurrent access, by SortedMap, which guarantees to return its values in ascending key order, by NavigableMap which extends SortedMap to find the closest matches to a target element, and by ConcurrentNavigableMap which extends ConcurrentMap and NavigableMap.
+
+
+--------------- Main Operations Performed On Any Collections ------------------
+
+
+insertion, removal at indexed positions 
+retrieval by content or by index 
+iterating through Collections
+
+These are the structures involved in the implementation of all Collections:
+
+Arrays: Good for iteration, access, bad for insertion/removal
+
+Linked Lists: access slow, insertion, removal fast
+
+Hash tables: No support for access by integer position, accessing by content, removal, insertion fast
+
+Trees: Access by content, elements sorted, removal, insertion fast.
+
+
+--------------------------- Collection Interface --------------------------------------
+
+- Used for bulk operations like add, remove collections, or in methods for polymorhphic assignment.
+
+- Provides Iterator
+
+-------------------------- Collections Class ---------------------------------------------
+- wrapper methods for getting umoddificable Collection
+- wrapper methods for getting synchronized Collection
+
+-- Methods it provides: sort, shuffle, reverse, fill, frequency, disjoint
+--- Collections.sort(list, Collections.reverseOrder());
+   int index = Collections.binarySearch(list, key);
+
+------------------------------  List -----------------------------------------------------
+
+ArrayList unsynchronized List, not thread safe, implemented by Array, fast access, iteration, slow insertion, deletion
+
+LinkedList: fast insertion, deletion
+
+------------------------------ Queue -----------------------------------------------------
+Adds element at one end and removes at the other
+
+PriorityQueue: with Comparator get elements of the higher priority first, otherwise first in, first out
+- poll to remove the element
+- peek to view without removing
+- offer to add the element
+
+
+------------------------------ Set -----------------------------------------------------
+HashSet: Hashtable implementation, implements Collection interface
+TreeSet: Tree implementation, implements Collection interface
+
+
+------------------------------ Map-------------------------------------
+HashMap, HashTable. HashMap is not synchronized.
+TreeMap (keys are sorted).Not synchronized
+Load factor: greater means more collisions for hashing keys, less means more memory, less collisions.
+
+
+-------------------------- SYNCHRONIZED COLLECTIONS -----------------------------
+List<String> list1 = new ArrayList<>();
+List<String> list2 = Collections.synchronizedList(list1);
+
+similar methods exist for other Collections...
+
+
+--------------------------- UNMODIFIABLE COLLECTIONS ------------------------------
+Reference refered to by Collections are not modifiable, though what is being referred can be modified.
+
+List<String> list1 = new ArrayList<>();
+List<String> list2 = Collections.unmodifiableList(list1);
+
+
+
+
+
