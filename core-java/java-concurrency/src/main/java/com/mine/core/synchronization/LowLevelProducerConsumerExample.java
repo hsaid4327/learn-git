@@ -37,7 +37,7 @@ class LowLevelProducerConsumerProcessor {
             synchronized (lock) {
                 
                 while(list.size() == 0) {
-                    lock.wait();
+                    lock.wait(); /// it releases the lock
                 }
                 
                 System.out.print("List size is: " + list.size());

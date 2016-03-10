@@ -21,7 +21,7 @@ class ReentrantRunner {
 		lock.lock();
 
 		System.out.println("Waiting ....");
-		cond.await();
+		cond.await(); // releases the lock here...
 
 		System.out.println("Woken up!");
 
