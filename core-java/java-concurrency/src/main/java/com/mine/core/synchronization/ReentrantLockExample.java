@@ -28,7 +28,9 @@ class ReentrantRunner {
 		try {
 			increment();
 		} finally {
+			
 			lock.unlock();
+			System.out.println("First Thread finished processing!");
 		}
 	}
 
@@ -41,12 +43,18 @@ class ReentrantRunner {
 		new Scanner(System.in).nextLine();
 		System.out.println("Got return key!");
 
-		cond.signal();
+		cond.signal(); /// it does not relesase the lock, only tells the waiting thread to proceede once the lock is available
 
 		try {
+			
 			increment();
+			
 		} finally {
+			System.out.println("Second Thread releasing the lock!");
+			
 			lock.unlock();
+			
+			System.out.println("Second Thread finished processing!");
 		}
 	}
 
