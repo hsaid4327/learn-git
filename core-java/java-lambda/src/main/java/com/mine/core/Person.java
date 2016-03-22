@@ -10,18 +10,23 @@ public class Person {
     public enum Sex {
         MALE, FEMALE
     }
+    public enum ImmigrationStatus {
+    	CITIZEN, RESIDENT, ALIEN
+    }
   
     String name; 
     LocalDate birthday;
     Sex gender;
     String emailAddress;
+    ImmigrationStatus status;
   
     Person(String nameArg, LocalDate birthdayArg,
-        Sex genderArg, String emailArg) {
+        Sex genderArg, String emailArg, ImmigrationStatus status) {
         name = nameArg;
         birthday = birthdayArg;
         gender = genderArg;
         emailAddress = emailArg;
+        this.status = status;
     }  
 
     public int getAge() {
@@ -62,22 +67,22 @@ public class Person {
             "Fred",
             IsoChronology.INSTANCE.date(1980, 6, 20),
             Person.Sex.MALE,
-            "fred@example.com"));
+            "fred@example.com", ImmigrationStatus.CITIZEN));
         roster.add(
             new Person(
             "Jane",
             IsoChronology.INSTANCE.date(1990, 7, 15),
-            Person.Sex.FEMALE, "jane@example.com"));
+            Person.Sex.FEMALE, "jane@example.com", ImmigrationStatus.ALIEN));
         roster.add(
             new Person(
             "George",
             IsoChronology.INSTANCE.date(1991, 8, 13),
-            Person.Sex.MALE, "george@example.com"));
+            Person.Sex.MALE, "george@example.com", ImmigrationStatus.RESIDENT));
         roster.add(
             new Person(
             "Bob",
             IsoChronology.INSTANCE.date(2000, 9, 12),
-            Person.Sex.MALE, "bob@example.com"));
+            Person.Sex.MALE, "bob@example.com", ImmigrationStatus.RESIDENT));
         
         return roster;
     }
@@ -85,7 +90,9 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", birthday=" + birthday + ", gender=" + gender + ", emailAddress="
-				+ emailAddress + "]";
+				+ emailAddress + ", status=" + status + "]";
 	}
-    
+
+
+	
 }
