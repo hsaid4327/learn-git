@@ -1,5 +1,17 @@
  Notes on Generics:
  
+ List<E> : E is type  parameter, and the interface or class defined as such is called Generic type.
+ List<String> is a parametrized type
+ List is raw type
+ Raw type can only be used with class literals. List.class instead of List<String>.class or with instanceof operator
+ Actual Type Parameter: String
+ Formal Type Parameter: E
+ Unbounded wild card: List<?>
+ Bounded Type paramter: List<E extends Number>
+ Recursive Type bound: <T extends Comparable<T>>
+ Bounded wild card type: <? extends Number>
+ Generic Method: static <E> List<E> alist(E[] a)
+ 
   -------------------Arrays And Generics-----------------------------
  
  - Arrays are covariant. If S is subtype of T, then S[] is subtype of T[]
