@@ -1,0 +1,108 @@
+ Notes on Generics:
+ 
+ List<E> : E is type  parameter, and the interface or class defined as such is called Generic type.
+ List<String> is a parametrized type
+ List is raw type
+ Raw type can only be used with class literals. List.class instead of List<String>.class or with instanceof operator
+ Actual Type Parameter: String
+ Formal Type Parameter: E
+ Unbounded wild card: List<?>
+ Bounded Type paramter: List<E extends Number>
+ Recursive Type bound: <T extends Comparable<T>>
+ Bounded wild card type: <? extends Number>
+ Generic Method: static <E> List<E> alist(E[] a)
+ 
+  -------------------Arrays And Generics-----------------------------
+ 
+ - Arrays are covariant. If S is subtype of T, then S[] is subtype of T[]
+ - Generics are not covariant. List<S> is not subtype of List<T> if S is subtype of T
+ - Arrays are reified, which means that any type information at the declaration stage is carried over 
+   into the run time, and if there is a type mismatch it is captured at runtime: for example
+                
+                
+                List<Integer> ints = Arrays.asList(1,2,3);
+				List<? extends Number> nums = ints;
+				nums.put(2, 3.14);  // compile-time error
+				assert ints.toString().equals("[1, 2, 3.14]");  // uh oh!
+				
+- The type Collection<?> stands for:
+
+            Collection<? extends Object>
+            	
+ ------------------ WildCard Capture--------------------------------
+   
+   
+   When a generic method is invoked, the type parameter may be chosen to match the unknown type represented by a wildcard. 
+   This is called wildcard capture.
+   
+   For example here the private method is capturing the wildcard:
+			  
+			   public static void reverse(List<?> list) { rev(list); }
+			   private static <T> void rev(List<T> list) {
+			   List<T> tmp = new ArrayList<T>(list);
+			   for (int i = 0; i < list.size(); i++) {
+			    list.set(i, tmp.get(list.size()-i-1));
+			  }
+			}
+			
+
+  ---------- Restrictions On The Use Of Wildcards --------------------
+   
+   Wildcards may not appear at the top level in class instance creation expressions (new),
+   
+         List<?> list = new ArrayList<?>();  // compile-time error
+         Map<String, ? extends Number> map = new HashMap<String, ? extends Number>();  // compile-time error
+         
+         List<Number> nums = new ArrayList<Number>();  //ok
+		 List<? super Number> sink = nums;          //ok
+		 List<? extends Number> source = nums;      //ok
+		 List<List<?>> lists = new ArrayList<List<?>>();  //ok
+		 
+		 
+Generic Method Calls If a generic method call includes explicit type parameters, those type parameters must not be wildcards. For example, say we have the following generic method:
+
+						class Lists {
+						  public static <T> List<T> factory() { return new ArrayList<T>(); }
+						}
+
+You may choose for the type parameters to be inferred, or you may pass an explicit type parameter. Both of the following are legal:
+
+				List<?> list = Lists.factory();
+				List<?> list = Lists.<Object>factory();
+
+If an explicit type parameter is passed, it must not be a wildcard:
+
+				List<?> list = Lists.<?>factory();  // compile-time error
+
+As before, nested wildcards are permitted:
+
+				List<List<?>> = Lists.<List<?>>factory();  // ok
+		 
+		 
+		 
+------------------------- WildCard Providing Flexibility in Comporable -----------------
+Take this method:
+
+<T extends Comparable<? super T>> T max(Collection<? extends T> coll)
+
+It would allow Apples to compared with Oranges or prohibit that comparison depending upon how 
+the classes are defined.
+
+Prohibiting Comparison:
+   Apples extends Fruit implements Comparable<Apple> {......
+   Orange extends Fruit implements Comparable<Orange> {........
+   
+ Allowing Comparison:
+   Apples extends Fruit implements Comparable<Fruit> {......
+   Orange extends Fruit implements Comparable<Fruit> {........
+   
+   In the later case, if we did not use the ? super T in comparable, we could only compare Fruits,
+   not oranges..
+   
+ ------------------ Multiple Bounds ---------------------------
+ public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll) 
+			
+			
+     			
+				
+				   
