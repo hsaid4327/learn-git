@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>java-algorithsm</artifactId>
 	<packaging>jar</packaging>
+	<!-- test again and again  and again-->
 	
 	<parent>
 		<groupId>com.mine.core</groupId>
